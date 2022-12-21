@@ -124,3 +124,50 @@ select name, population, area from world where area > 3000000 OR population > 25
 ```
 select name, population, area from world where NOT(area > 300000 OR population > 250000000)
 ```
+
+- Show the name and population in millions and the GDP in billions for the countries of the continent 'South America'. Use the ROUND function to show the values to two decimal places.
+
+For South America show population in millions and GDP in billions both to 2 decimal places.
+
+```
+select name, ROUND(population/1000000, 2) as population, ROUND(gdp/1000000000, 2) as gdp from world where continent in ('South America');
+```
+
+- Show the name and per-capita GDP for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros). Round this value to the nearest 1000.
+  Show per-capita GDP for the trillion dollar countries to the nearest $1000.
+
+```
+select name, ROUND(gdp/population, -3) as gdp from world where gdp > 1000000000000;
+```
+
+- Greece has capital Athens.
+
+Each of the strings 'Greece', and 'Athens' has 6 characters.
+
+Show the name and capital where the name and the capital have the same number of characters.
+
+You can use the LENGTH function to find the number of characters in a string
+For Microsoft SQL Server the function LENGTH is LEN
+
+```
+SELECT name, LEN(name), continent, LEN(continent), capital, LEN(capital)
+  FROM world
+ WHERE name LIKE 'G%'
+```
+
+- The capital of Sweden is Stockholm. Both words start with the letter 'S'.
+
+Show the name and the capital where the first letters of each match. Don't include countries where the name and the capital are the same word.
+You can use the function LEFT to isolate the first character.
+You can use <> as the NOT EQUALS operator.
+
+```
+SELECT name, LEFT(name,1), capital
+FROM world where left(name, 1) <> name
+```
+
+스웨덴의 수도는 스톡홀름입니다. 두 단어 모두 문자 'S'로 시작합니다.
+
+각각의 첫 글자가 일치하는 이름과 대문자를 표시합니다. 이름과 대문자가 같은 단어인 국가는 포함하지 마십시오.
+LEFT 함수를 사용하여 첫 번째 문자를 분리할 수 있습니다.
+NOT EQUALS 연산자로 <>를 사용할 수 있습니다.
