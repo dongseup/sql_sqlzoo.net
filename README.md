@@ -166,8 +166,61 @@ SELECT name, LEFT(name,1), capital
 FROM world where left(name, 1) <> name
 ```
 
-스웨덴의 수도는 스톡홀름입니다. 두 단어 모두 문자 'S'로 시작합니다.
+- 1. Select the code which gives the name of countries beginning with U
 
-각각의 첫 글자가 일치하는 이름과 대문자를 표시합니다. 이름과 대문자가 같은 단어인 국가는 포함하지 마십시오.
-LEFT 함수를 사용하여 첫 번째 문자를 분리할 수 있습니다.
-NOT EQUALS 연산자로 <>를 사용할 수 있습니다.
+```
+select name from world where name like 'U%'
+```
+
+- 2. Select the code which shows just the population of United Kingdom?
+
+```
+SELECT name FROM world WHERE name = 'United Kingdom';
+```
+
+- 3. Select the answer which shows the problem with this SQL code - the intended result should be the continent of France:
+
+```
+ SELECT continent
+   FROM world
+  WHERE 'name' = 'France'
+```
+
+- 4. Select the result that would be obtained from the following code:
+
+```
+ SELECT name, population / 10
+  FROM world
+ WHERE population < 10000
+```
+
+- 5. Select the code which would reveal the name and population of countries in Europe and Asia
+
+```
+SELECT name, population
+  FROM world
+ WHERE continent IN ('Europe', 'Asia')
+```
+
+- 6. Select the code which would give two rows
+
+```
+SELECT name FROM world
+ WHERE name IN ('Cuba', 'Togo')
+```
+
+- 7. Select the result that would be obtained from this code:
+
+```
+SELECT name FROM world
+ WHERE continent = 'South America'
+   AND population > 40000000
+```
+
+1. U로 시작하는 국가 이름을 제공하는 코드를 선택하십시오.
+2. 영국의 인구만 표시하는 코드를 선택하시겠습니까?
+3. 이 SQL 코드의 문제를 나타내는 답변을 선택합니다. 의도한 결과는 프랑스 대륙이어야 합니다.
+4. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
+5. 유럽 및 아시아 국가의 이름과 인구를 나타내는 코드를 선택하십시오.
+6. 두 행을 제공하는 코드를 선택하십시오.
+7. 이 코드에서 얻을 수 있는 결과를 선택합니다.
