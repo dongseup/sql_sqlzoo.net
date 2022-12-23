@@ -219,10 +219,42 @@ SELECT name FROM world
    AND population > 40000000
 ```
 
-1. U로 시작하는 국가 이름을 제공하는 코드를 선택하십시오.
-2. 영국의 인구만 표시하는 코드를 선택하시겠습니까?
-3. 이 SQL 코드의 문제를 나타내는 답변을 선택합니다. 의도한 결과는 프랑스 대륙이어야 합니다.
-4. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
-5. 유럽 및 아시아 국가의 이름과 인구를 나타내는 코드를 선택하십시오.
-6. 두 행을 제공하는 코드를 선택하십시오.
-7. 이 코드에서 얻을 수 있는 결과를 선택합니다.
+### SELECT from nobel
+
+[학습](https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial)
+
+- Change the query shown so that it displays Nobel prizes for 1950.
+
+```
+select yr, subject, winner from nobel where yr = 1950
+```
+
+- Show who won the 1962 prize for literature.
+
+```
+select winner from nobel where subject = 'Literature' AND yr = 1962;
+```
+
+- Show the year and subject that won 'Albert Einstein' his prize.
+
+```
+select yr, subject from nobel where winner = 'Albert Einstein';
+```
+
+- Give the name of the 'peace' winners since the year 2000, including 2000.
+
+```
+select winner from nobel where yr >= 2000 AND subject = 'peace';
+```
+
+- Show all details (yr, subject, winner) of the literature prize winners for 1980 to 1989 inclusive.
+
+```
+select yr, subject, winner from nobel where 1980 <= yr AND 1989 >= yr AND subject = 'Literature';
+```
+
+- Show all details of the presidential winners:
+
+```
+select * from nobel where winner in ('Theodore Roosevelt', 'Thomas Woodrow Wilson', 'Jimmy Carter', 'Barack Obama');
+```
