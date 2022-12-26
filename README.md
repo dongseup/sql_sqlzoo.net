@@ -258,3 +258,65 @@ select yr, subject, winner from nobel where 1980 <= yr AND 1989 >= yr AND subjec
 ```
 select * from nobel where winner in ('Theodore Roosevelt', 'Thomas Woodrow Wilson', 'Jimmy Carter', 'Barack Obama');
 ```
+
+- Show the winners with first name John
+
+```
+select winner from nobel where winner like 'John%'
+```
+
+- Show the year, subject, and name of physics winners for 1980 together with the chemistry winners for 1984.
+
+```
+select yr, subject, winner from nobel where (subject = 'physics' AND yr = '1980') OR (subject = 'chemistry' AND yr = '1984')
+```
+
+- Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
+
+```
+select yr, subject, winner from nobel where NOT(subject = 'chemistry' OR subject = 'medicine') AND yr = '1980'
+```
+
+- Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
+
+```
+select yr, subject, winner from nobel where (yr < 1910 AND subject = 'medicine') OR (yr >= 2004 AND subject = 'literature');
+```
+
+- Find all details of the prize won by PETER GRÜNBERG
+
+```
+select * from nobel where winner = 'PETER GRÜNBERG'
+```
+
+- Find all details of the prize won by EUGENE O'NEILL
+
+```
+select * from nobel where winner = 'EUGENE O''NEILL'
+```
+
+- List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
+
+```
+select winner, yr, subject from nobel where winner like 'Sir%' order by yr DESC, winner;
+```
+
+- The expression subject IN ('chemistry','physics') can be used as a value - it will be 0 or 1.
+
+Show the 1984 winners and subject ordered by subject and winner name; but list chemistry and physics last.
+
+```
+
+```
+
+이름이 John인 우승자 표시
+1980년 물리학 우승자의 연도, 주제 및 이름을 1984년 화학 우승자와 함께 표시하십시오.
+화학 및 의학을 제외한 1980년 수상자 연도, 주제 및 이름 표시
+초기 연도(1910년 이전, 1910년 제외)에 '의학' 상을 수상한 사람과 후기 연도(2004년 이후, 2004년 포함) '문학' 상을 수상한 사람의 연도, 주제 및 이름 표시
+PETER GRÜNBERG가 수상한 상품에 대한 모든 세부 정보 찾기
+그의 이름에 있는 u에는 움라우트가 있습니다. 이 링크가 유용할 수 있습니다 https://en.wikipedia.org/wiki/%C3%9C#Keyboarding
+EUGENE O'NEILL이 수상한 상품에 대한 모든 세부 정보 찾기
+
+우승자가 Sir로 시작하는 우승자, 연도 및 주제를 나열하십시오. 가장 최근의 것을 먼저 표시한 다음 이름순으로 표시합니다.
+
+표현 대상 IN('chemistry','physics')은 값으로 사용할 수 있습니다. 0 또는 1이 됩니다. 1984년 우승자와 주제를 주제와 우승자 이름으로 정렬하여 표시합니다. 그러나 화학과 물리학은 마지막에 나열하십시오.
