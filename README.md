@@ -309,14 +309,55 @@ Show the 1984 winners and subject ordered by subject and winner name; but list c
 
 ```
 
-이름이 John인 우승자 표시
-1980년 물리학 우승자의 연도, 주제 및 이름을 1984년 화학 우승자와 함께 표시하십시오.
-화학 및 의학을 제외한 1980년 수상자 연도, 주제 및 이름 표시
-초기 연도(1910년 이전, 1910년 제외)에 '의학' 상을 수상한 사람과 후기 연도(2004년 이후, 2004년 포함) '문학' 상을 수상한 사람의 연도, 주제 및 이름 표시
-PETER GRÜNBERG가 수상한 상품에 대한 모든 세부 정보 찾기
-그의 이름에 있는 u에는 움라우트가 있습니다. 이 링크가 유용할 수 있습니다 https://en.wikipedia.org/wiki/%C3%9C#Keyboarding
-EUGENE O'NEILL이 수상한 상품에 대한 모든 세부 정보 찾기
+- 1. Pick the code which shows the name of winner's names beginning with C and ending in n
 
-우승자가 Sir로 시작하는 우승자, 연도 및 주제를 나열하십시오. 가장 최근의 것을 먼저 표시한 다음 이름순으로 표시합니다.
+```
+select winner from nobel where winner like 'c&' AND winner like '%n';
+```
 
-표현 대상 IN('chemistry','physics')은 값으로 사용할 수 있습니다. 0 또는 1이 됩니다. 1984년 우승자와 주제를 주제와 우승자 이름으로 정렬하여 표시합니다. 그러나 화학과 물리학은 마지막에 나열하십시오.
+- 2. Select the code that shows how many Chemistry awards were given between 1950 and 1960
+
+```
+SELECT COUNT(subject) FROM nobel
+ WHERE subject = 'Chemistry'
+   AND yr BETWEEN 1950 and 1960
+```
+
+- 3. Pick the code that shows the amount of years where no Medicine awards were given
+
+```
+SELECT COUNT(DISTINCT yr) FROM nobel
+ WHERE yr NOT IN (SELECT DISTINCT yr FROM nobel WHERE subject = 'Medicine')
+```
+
+- 4. Select the result that would be obtained from the following code:
+- 5. Select the code which would show the year when neither a Physics or Chemistry award was given
+
+```
+SELECT yr FROM nobel
+ WHERE yr NOT IN(SELECT yr
+                   FROM nobel
+                 WHERE subject IN ('Chemistry','Physics'))
+```
+
+- 6. Select the code which shows the years when a Medicine award was given but no Peace or Literature award was
+
+```
+SELECT DISTINCT yr
+  FROM nobel
+ WHERE subject='Medicine'
+   AND yr NOT IN(SELECT yr FROM nobel
+                  WHERE subject='Literature')
+   AND yr NOT IN (SELECT yr FROM nobel
+                   WHERE subject='Peace')
+```
+
+- 7. Pick the result that would be obtained from the following code:
+
+1. C로 시작하고 n으로 끝나는 당첨자의 이름을 보여주는 코드를 선택하세요.
+2. 1950년과 1960년 사이에 얼마나 많은 화학상이 주어졌는지를 나타내는 코드를 선택하십시오.
+3. 의학 상이 수여되지 않은 연도를 나타내는 코드를 선택하십시오.
+4. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
+5. 물리학 또는 화학 상이 수여되지 않은 연도를 표시하는 코드를 선택하십시오.
+6. 의학상은 받았지만 평화상이나 문학상은 받지 않은 연도를 나타내는 코드를 선택하십시오.
+7. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
