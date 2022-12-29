@@ -354,10 +354,24 @@ SELECT DISTINCT yr
 
 - 7. Pick the result that would be obtained from the following code:
 
-1. C로 시작하고 n으로 끝나는 당첨자의 이름을 보여주는 코드를 선택하세요.
-2. 1950년과 1960년 사이에 얼마나 많은 화학상이 주어졌는지를 나타내는 코드를 선택하십시오.
-3. 의학 상이 수여되지 않은 연도를 나타내는 코드를 선택하십시오.
-4. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
-5. 물리학 또는 화학 상이 수여되지 않은 연도를 표시하는 코드를 선택하십시오.
-6. 의학상은 받았지만 평화상이나 문학상은 받지 않은 연도를 나타내는 코드를 선택하십시오.
-7. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
+### SELECT in SELECT
+
+[학습](https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial)
+
+- List each country name where the population is larger than that of 'Russia'.
+
+```
+select name from world where population > (select population from world where name = 'Russia')
+```
+
+- Show the countries in Europe with a per capita GDP greater than 'United Kingdom'.
+
+```
+select name from world where continent = 'Europe' AND gdp/population > (select gdp/population from world where name = 'United Kingdom')
+```
+
+- List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.
+
+```
+select name, continent from world where continent = (select continent from world where name = 'Argentina') OR continent = (select continent from world where name = 'Australia')
+```
