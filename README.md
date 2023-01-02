@@ -375,3 +375,26 @@ select name from world where continent = 'Europe' AND gdp/population > (select g
 ```
 select name, continent from world where continent = (select continent from world where name = 'Argentina') OR continent = (select continent from world where name = 'Australia')
 ```
+
+- Which country has a population that is more than United Kingdom but less than Germany? Show the name and the population.
+
+```
+select name, population from world where population > (select population from world where name = 'United Kingdom') AND population < (select population from world where name = 'Germany')
+```
+
+- Germany (population 80 million) has the largest population of the countries in Europe. Austria (population 8.5 million) has 11% of the population of Germany.
+  Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.
+  You can use the function ROUND to remove the decimal places.
+  You can use the function CONCAT to add the percentage symbol.
+
+```
+select name, concat(cast(round(population/(select max(population) from world where continent = 'Europe')*100,0) as integer), '%') as percentage from world where continent = 'Europe'
+```
+
+독일(인구 8000만)은 유럽 국가 중 인구가 가장 많다. 오스트리아(인구 850만)는 독일 인구의 11%를 차지합니다.
+유럽에 있는 각 국가의 이름과 인구를 표시하십시오. 인구를 독일 인구의 백분율로 표시하십시오.
+형식은 이름, 백분율이어야 합니다. 예를 들면 다음과 같습니다.
+
+ROUND 함수를 사용하여 소수점 이하 자릿수를 제거할 수 있습니다.
+CONCAT 함수를 사용하여 백분율 기호를 추가할 수 있습니다.
+850/8000\*100
