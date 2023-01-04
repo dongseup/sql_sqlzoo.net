@@ -397,4 +397,65 @@ select name, concat(cast(round(population/(select max(population) from world whe
 select name from world where gdp/population > (select sum(gdp/population) / count(select continent from world where continent = 'Europe') as gdp from world where continent = 'Europe')
 ```
 
-유럽의 모든 국가보다 GDP가 더 높은 국가는 어디입니까? [이름만 알려주십시오.] (일부 국가는 NULL gdp 값을 가질 수 있습니다.)
+### Using SUM, Count, MAX, DISTINCT and ORDER BY
+
+[학습](https://sqlzoo.net/wiki/Using_SUM,_Count,_MAX,_DISTINCT_and_ORDER_BY)
+
+-   The total population and GDP of Europe.
+
+```
+select sum(population), sum(gdp) from bbc where region = 'Europe';
+```
+
+-   What are the regions?
+
+```
+select distinct region from bbc
+```
+
+-   Show the name and population for each country with a population of more than 100000000. Show countries in descending order of population.
+
+```
+select name, population from bbc where population >= 100000000 order by population desc
+```
+
+### SUM and COUNT
+
+[학습](https://sqlzoo.net/wiki/SUM_and_COUNT)
+
+-   Show the total population of the world.
+
+```
+select sum(population) as world population from world;
+```
+
+-   List all the continents - just once each.
+
+```
+select distinct continent from world
+```
+
+-   Give the total GDP of Africa
+
+```
+select sum(gdp) as gdp from world where continent = 'Africa'
+```
+
+-   How many countries have an area of at least 1000000
+
+```
+select count(name) as length from world where area >= 1000000
+```
+
+-   What is the total population of ('Estonia', 'Latvia', 'Lithuania')
+
+```
+select sum(population) from world where name in ('Estonia', 'Latvia', 'Lithuania')
+```
+
+1
+세계의 총 인구를 보여줍니다.
+모든 대륙을 나열하십시오 - 각각 한 번만.
+아프리카의 총 GDP를 제공하십시오
+면적이 1000000 이상인 국가는 몇 개입니까?
+('에스토니아', '라트비아', '리투아니아')의 총 인구는 얼마입니까?
