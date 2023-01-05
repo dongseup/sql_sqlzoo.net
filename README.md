@@ -453,9 +453,20 @@ select count(name) as length from world where area >= 1000000
 select sum(population) from world where name in ('Estonia', 'Latvia', 'Lithuania')
 ```
 
-1
-세계의 총 인구를 보여줍니다.
-모든 대륙을 나열하십시오 - 각각 한 번만.
-아프리카의 총 GDP를 제공하십시오
-면적이 1000000 이상인 국가는 몇 개입니까?
-('에스토니아', '라트비아', '리투아니아')의 총 인구는 얼마입니까?
+-   For each continent show the continent and number of countries.
+
+```
+select continent, count(name) from world group by continent;
+```
+
+-   For each continent show the continent and number of countries with populations of at least 10 million.
+
+```
+select continent, count(name) from world group by continent having sum(population) > 10000000
+```
+
+-   List the continents that have a total population of at least 100 million.
+
+```
+select continent, count(name) from world where population >=10000000 group by continent
+```
