@@ -470,3 +470,29 @@ select continent, count(name) from world group by continent having sum(populatio
 ```
 select continent, count(name) from world where population >=10000000 group by continent
 ```
+
+### SUM and COUNT Quiz
+
+-   1. Select the statement that shows the sum of population of all countries in 'Europe'
+
+```
+select sum(population) from bbc where region = 'Europe'
+```
+
+-   2. Select the statement that shows the number of countries with population smaller than 150000
+
+```
+select count(name) from bbc where population < 150000
+```
+
+-   3. Select the list of core SQL aggregate functions
+
+```
+AVG(), COUNT(), CONCAT(), FIRST(), LAST(), MAX(), MIN(), SUM()
+```
+
+-   5. Select the statement that shows the average population of 'Poland', 'Germany' and 'Denmark'
+
+```
+ SELECT AVG(population) FROM bbc WHERE name IN ('Poland', 'Germany', 'Denmark')
+```
