@@ -496,3 +496,26 @@ AVG(), COUNT(), CONCAT(), FIRST(), LAST(), MAX(), MIN(), SUM()
 ```
  SELECT AVG(population) FROM bbc WHERE name IN ('Poland', 'Germany', 'Denmark')
 ```
+
+-   6. Select the statement that shows the medium population density of each region
+
+```
+  SELECT region, SUM(population)/SUM(area) AS density FROM bbc GROUP BY region
+```
+
+-   7. Select the statement that shows the name and population density of the country with the largest population
+
+```
+
+```
+
+1. '유럽'에 있는 모든 국가의 인구 합계를 나타내는 항목을 선택하십시오.
+   select sum(population) from bbc where region = 'Europe';
+2. 인구가 150000명 미만인 국가의 수를 나타내는 항목을 선택하십시오.
+   select count(name) from bbc where populations < 150000
+3. 다음 코드에서 얻을 수 있는 결과를 선택합니다.
+4. 'Poland', 'Germany' 및 'Denmark'의 평균 인구를 나타내는 문을 선택합니다.
+   select avg(populations) from bbc where name in (po, oo,.);
+5. 각 지역의 중간 인구밀도를 나타내는 항목을 선택하십시오.
+6. 인구가 가장 많은 국가의 이름과 인구 밀도를 나타내는 문장을 선택하십시오.
+   select name, population/area from bbc where population = (select max(population) from bbc)
